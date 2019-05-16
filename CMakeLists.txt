@@ -42,13 +42,16 @@ option(gRPC_BUILD_CODEGEN "Build codegen" ON)
 option(gRPC_BUILD_CSHARP_EXT "Build C# extensions" ON)
 option(gRPC_BACKWARDS_COMPATIBILITY_MODE "Build libraries that are binary compatible across a larger number of OS and libc versions" OFF)
 
-set(gRPC_INSTALL_default ON)
-if (NOT CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
-  # Disable gRPC_INSTALL by default if building as a submodule
-  set(gRPC_INSTALL_default OFF)
-endif()
-set(gRPC_INSTALL ${gRPC_INSTALL_default} CACHE BOOL
+if (NOT DEFINED gRPC_INSTALL)
+  set(gRPC_INSTALL_default ON)
+  if (NOT CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+    # Disable gRPC_INSTALL by default if building as a submodule
+    set(gRPC_INSTALL_default OFF)
+  endif()
+  set(gRPC_INSTALL ${gRPC_INSTALL_default} CACHE BOOL
     "Generate installation target: gRPC_ZLIB_PROVIDER, gRPC_CARES_PROVIDER, gRPC_SSL_PROVIDER and gRPC_PROTOBUF_PROVIDER must all be \"package\"")
+endif()
+
 
 # Providers for third-party dependencies (gRPC_*_PROVIDER properties):
 # "module": build the dependency using sources from git submodule (under third_party)
