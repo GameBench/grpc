@@ -18923,12 +18923,12 @@ endif (gRPC_BUILD_TESTS)
 
 
 
-if (gRPC_INSTALL)
-  install(EXPORT gRPCTargets
-    DESTINATION ${gRPC_INSTALL_CMAKEDIR}
-    NAMESPACE gRPC::
-  )
-endif()
+# if (gRPC_INSTALL)
+#   install(EXPORT gRPCTargets
+#     DESTINATION ${gRPC_INSTALL_CMAKEDIR}
+#     NAMESPACE gRPC::
+#   )
+# endif()
 
 foreach(_config gRPCConfig gRPCConfigVersion)
   configure_file(cmake/${_config}.cmake.in
@@ -18940,3 +18940,4 @@ endforeach()
 
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/etc/roots.pem
   DESTINATION ${gRPC_INSTALL_SHAREDIR})
+)
