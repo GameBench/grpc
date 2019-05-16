@@ -33,10 +33,6 @@ if("${gRPC_SSL_PROVIDER}" STREQUAL "module")
   else()
       message(WARNING "gRPC_SSL_PROVIDER is \"module\" but BORINGSSL_ROOT_DIR is wrong")
   endif()
-  if(gRPC_INSTALL)
-    message(WARNING "gRPC_INSTALL will be forced to FALSE because gRPC_SSL_PROVIDER is \"module\"")
-    set(gRPC_INSTALL FALSE)
-  endif()
 elseif("${gRPC_SSL_PROVIDER}" STREQUAL "package")
   # OpenSSL installation directory can be configured by setting OPENSSL_ROOT_DIR
   # We expect to locate OpenSSL using the built-in cmake module as the openssl
